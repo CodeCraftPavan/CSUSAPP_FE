@@ -1,0 +1,56 @@
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <!-- Login Form -->
+                <div *ngIf="showLoginForm">
+                <h3 class="login-heading mb-4"><strong>Welcome To CSUSAPP!</strong></h3>               
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">Email</label>
+                    <input type="text" class="form-control" formControlName="userEmail" name="userEmail"
+                      [ngClass]="{'is-invalid':(submitted && f['userEmail'].errors) ||(f['userEmail'].errors && f['userEmail'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['userEmail'].errors) ||(f['userEmail'].errors && f['userEmail'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['userEmail'].errors['required']">
+                        Email is required
+                      </div>
+                      <div *ngIf="f['userEmail'].errors['pattern']">Email is invalid</div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">Password</label>
+                    <input type="password" class="form-control" formControlName="password" name="password"
+                      [ngClass]="{'is-invalid':(submitted && f['password'].errors) ||(f['password'].errors && f['password'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['password'].errors) ||(f['password'].errors && f['password'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['password'].errors['required']">
+                        Password is required
+                      </div>                    
+                    </div>
+                  </div>  
+                  <div class="d-grid">
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold bg-primary-delivery mb-2" type="submit">
+                      <div class="spinner-border" role="status" style="font-size: 10px; width: 15px; height: 15px" *ngIf="loginText == 'Logging Please Wait!'">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      {{loginText}}</button>                    
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  
+  
