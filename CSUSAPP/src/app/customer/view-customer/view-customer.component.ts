@@ -1,13 +1,14 @@
+
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/assets/mockData/enumValues';
 
 @Component({
-  selector: 'app-edit-customer',
-  templateUrl: './edit-customer.component.html',
-  styleUrls: ['./edit-customer.component.css']
+  selector: 'app-view-customer',
+  templateUrl: './view-customer.component.html',
+  styleUrls: ['./view-customer.component.css']
 })
-export class EditCustomerComponent {
+export class ViewCustomerComponent {
 
   addCustomerForm!: FormGroup;
   rolesList = RolesValue;
@@ -15,11 +16,6 @@ export class EditCustomerComponent {
   statusList = statusValue
   ServicesList = ServicesValue
   customerData:any;
-  servicesList:any;
-  associatesList:any;
-
-  associatedisplayedColumns: string[] = ['associateName','role','contactInformation','edit'];
-  servicedisplayedColumns: string[] = ['serviceName','saleDate','view'];
 
   constructor(private formBuilder: FormBuilder){
     this.addCustomerForm = this.formBuilder.group({
@@ -39,9 +35,8 @@ export class EditCustomerComponent {
   let res :any  = localStorage.getItem("customerData");
   this.customerData = JSON.parse(res)
   console.log(this.customerData,'customer');
-  this.updateCustomer()
-  this.servicesList = this.customerData.soldServices.$values;
-  this.associatesList = this.customerData.associates.$values;
+  
+  this. updateCustomer()
   }
 
   get soldServicesArray() {
@@ -135,13 +130,6 @@ export class EditCustomerComponent {
     })
   }
 
-  editService(element:any){
-
-  }
-
-  editAssociate(element:any){
-
-  }
-
 }
+
 

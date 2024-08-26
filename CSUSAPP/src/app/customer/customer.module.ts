@@ -8,13 +8,15 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AddCustomerComponent,
     EditCustomerComponent,
-    CustomersListComponent
+    CustomersListComponent,
+    ViewCustomerComponent
   ],
   imports: [
     CommonModule,
