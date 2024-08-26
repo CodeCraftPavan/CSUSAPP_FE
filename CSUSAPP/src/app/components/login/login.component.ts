@@ -40,7 +40,7 @@ export class LoginComponent {
         localStorage.setItem('firstName', data.data.firstName);
         localStorage.setItem('lastName', data.data.lastName);
         this.masterService.saveToken(data.data.token);
-        this.router.navigate(['/dashboard/mergeppt']);
+        this.router.navigate(['/customer/customersList']);
 
         this.loginText = "Log In";
         }
