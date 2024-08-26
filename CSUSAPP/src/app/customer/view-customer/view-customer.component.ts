@@ -1,20 +1,21 @@
+
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/assets/mockData/enumValues';
 
 @Component({
-  selector: 'app-add-customer',
-  templateUrl: './add-customer.component.html',
-  styleUrls: ['./add-customer.component.css']
+  selector: 'app-view-customer',
+  templateUrl: './view-customer.component.html',
+  styleUrls: ['./view-customer.component.css']
 })
-export class AddCustomerComponent {
+export class ViewCustomerComponent {
 
   addCustomerForm!: FormGroup;
   rolesList = RolesValue;
   IndSegmentList = IndSegmentValue
   statusList = statusValue
   ServicesList = ServicesValue
-
+  customerData:any;
 
   constructor(private formBuilder: FormBuilder){
     this.addCustomerForm = this.formBuilder.group({
@@ -28,6 +29,14 @@ export class AddCustomerComponent {
       soldServices: this.formBuilder.array([]),
       associates: this.formBuilder.array([]),
     })
+  }
+
+  ngOnInit() {
+  let res :any  = localStorage.getItem("customerData");
+  this.customerData = JSON.parse(res)
+  console.log(this.customerData,'customer');
+  
+  this. updateCustomer()
   }
 
   get soldServicesArray() {
@@ -110,5 +119,17 @@ export class AddCustomerComponent {
     this.soldServicesArray.value;
   }
 
+  updateCustomer(){
+    this.addCustomerForm.patchValue({
+      abbrevation:this.customerData.abbrevation,
+      fullName:this.customerData.fullName,
+      region:this.customerData.region,
+      industrySegment:this.customerData.industrySegment,
+      notes:this.customerData.notes,
+      status:this.customerData.status,
+    })
+  }
 
 }
+
+

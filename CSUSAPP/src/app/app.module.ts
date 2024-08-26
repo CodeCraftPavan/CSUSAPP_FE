@@ -8,12 +8,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { MasterService } from './service/master.service/master.service';
 import { UserService } from './service/user.service/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthInterceptor } from './shared/authentication/auth.interceptor';
 
 
 
@@ -22,7 +24,8 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     LoginComponent,
     MasterService,
-    UserService
+    UserService,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,13 @@ import { MatCardModule } from '@angular/material/card';
     ),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor, 
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

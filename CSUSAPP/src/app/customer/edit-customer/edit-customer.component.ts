@@ -15,6 +15,11 @@ export class EditCustomerComponent {
   statusList = statusValue
   ServicesList = ServicesValue
   customerData:any;
+  servicesList:any;
+  associatesList:any;
+
+  associatedisplayedColumns: string[] = ['associateName','role','contactInformation','edit'];
+  servicedisplayedColumns: string[] = ['serviceName','saleDate','view'];
 
   constructor(private formBuilder: FormBuilder){
     this.addCustomerForm = this.formBuilder.group({
@@ -28,6 +33,15 @@ export class EditCustomerComponent {
       soldServices: this.formBuilder.array([]),
       associates: this.formBuilder.array([]),
     })
+  }
+
+  ngOnInit() {
+  let res :any  = localStorage.getItem("customerData");
+  this.customerData = JSON.parse(res)
+  console.log(this.customerData,'customer');
+  this.updateCustomer()
+  this.servicesList = this.customerData.soldServices.$values;
+  this.associatesList = this.customerData.associates.$values;
   }
 
   get soldServicesArray() {
@@ -114,11 +128,19 @@ export class EditCustomerComponent {
     this.addCustomerForm.patchValue({
       abbrevation:this.customerData.abbrevation,
       fullName:this.customerData.fullName,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
+      region:this.customerData.region,
+      industrySegment:this.customerData.industrySegment,
+      notes:this.customerData.notes,
+      status:this.customerData.status,
     })
+  }
+
+  editService(element:any){
+
+  }
+
+  editAssociate(element:any){
+
   }
 
 }
