@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -22,7 +23,8 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     LoginComponent,
     MasterService,
-    UserService
+    UserService,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
