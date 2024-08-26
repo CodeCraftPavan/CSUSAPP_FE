@@ -30,6 +30,14 @@ export class EditCustomerComponent {
     })
   }
 
+  ngOnInit() {
+  let res :any  = localStorage.getItem("customerData");
+  this.customerData = JSON.parse(res)
+  console.log(this.customerData,'customer');
+  
+  this. updateCustomer()
+  }
+
   get soldServicesArray() {
     return this.addCustomerForm.get('soldServices') as FormArray;
   }
@@ -114,10 +122,10 @@ export class EditCustomerComponent {
     this.addCustomerForm.patchValue({
       abbrevation:this.customerData.abbrevation,
       fullName:this.customerData.fullName,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
-      // addressLine1:this.customerData,
+      region:this.customerData.region,
+      industrySegment:this.customerData.industrySegment,
+      notes:this.customerData.notes,
+      status:this.customerData.status,
     })
   }
 

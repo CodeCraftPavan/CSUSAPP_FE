@@ -13,8 +13,8 @@ export class CustomerService {
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Authentication.Login,user)
   }
 
-  getAllCustomers(){
-    return this.http.get<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.getAllCustomer)
+  getAllCustomers(data:any){
+    return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.getAllCustomer,data)
   }
   
 }
