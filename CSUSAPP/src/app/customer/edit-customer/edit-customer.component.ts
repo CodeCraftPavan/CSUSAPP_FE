@@ -4,6 +4,7 @@ import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/ass
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,14 +32,20 @@ export class EditCustomerComponent {
   constructor(private formBuilder: FormBuilder,
     private customerService: CustomerService,
     private toastrService: ToastrService,
+    private router: Router,
   ){
     this.addCustomerForm = this.formBuilder.group({
+      id:[''],
       fullName: [''],
       region: [''],
-      servicesSold: [''],
-      associates: [''],
-      crossSell: [''],
-      upSell: [''],
+      servicenames: [''],
+      associatesNames: [''],
+      abbrevation: [''],
+      industrySegment: [''],
+      notes: [''],
+      status: [''],
+      // crossSell: [''],
+      // upSell: [''],
     })
   }
 
@@ -182,8 +189,8 @@ export class EditCustomerComponent {
 
   updateCustomer(){
 
-    this.servicesList = this.customerData.soldServices.$values;
-  this.associatesList = this.customerData.associates.$values;
+  //   this.servicesList = this.customerData.soldServices.$values;
+  // this.associatesList = this.customerData.associates.$values;
 
     this.addCustomerForm.patchValue({
       abbrevation:this.customerData.abbrevation,
@@ -192,7 +199,11 @@ export class EditCustomerComponent {
       industrySegment:this.customerData.industrySegment,
       notes:this.customerData.notes,
       status:this.customerData.status,
+      servicenames:this.customerData.servicenames,
+      associatesNames:this.customerData.associatesNames,
     })
+    console.log(this.addCustomerForm.value);
+    
   }
 
   editService(element:any){
@@ -212,6 +223,7 @@ export class EditCustomerComponent {
     const searchTerm = this.searchForm.get('serviceName')?.value;
      this.customerService.addCustomerService(this.searchForm.value).subscribe((data: any) => {
         if (data.status == 200) {
+          this.router.navigate(['/customer/customersList']);
           // this.editDialogVisible = false;
           this.toastrService.success('Service Added successfully');
           // this.GetAllReferral();
@@ -271,6 +283,28 @@ export class EditCustomerComponent {
 
   removeService(){
 
+  }
+
+  updateData(){
+    // this.addCustomerForm.addControl('id',this.formBuilder.control(''));
+    // this.addCustomerForm.addControl('Servicenames','');
+    // this.addCustomerForm.addControl('AssociatesNames','');
+    this.addCustomerForm.patchValue({
+      id: this.customerData.id,
+      // Servicenames: 'data',
+      // AssociatesNames: 'data',
+    })
+    this.customerService.updateCustomer(this.addCustomerForm.value).subscribe((data: any) => {
+      if (data.statuscode == 200) {
+        this.router.navigate(['/customer/customersList']);
+        // this.editDialogVisible = false;
+        this.toastrService.success('Service Updated successfully');
+        // this.GetAllReferral();
+      }
+      else {
+        return;
+      }
+    })
   }
 
 }

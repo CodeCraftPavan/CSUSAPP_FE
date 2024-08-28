@@ -5,7 +5,7 @@
 
 <div class="p-2 sec-customer">
 
-  <form [formGroup]="addCustomerForm" (ngSubmit)="submitAddUser()">
+  <form [formGroup]="addCustomerForm" (ngSubmit)="updateData()">
 
       <div class="row">
          
@@ -21,15 +21,15 @@
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Services Sold</label>
-             <textarea class="form-textarea" formControlName="servicesSold" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="servicenames" rows="5" cols="85"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Associates</label>
-             <textarea class="form-textarea" formControlName="associates" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="associatesNames" rows="5" cols="85"></textarea>
             </div>
 
-            <div class="form-group col-lg-6 mb-3">
+            <!-- <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Cross Sell</label>
              <textarea class="form-textarea" formControlName="crossSell" rows="5" cols="85"></textarea>
             </div>
@@ -37,7 +37,7 @@
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Up Sell</label>
              <textarea class="form-textarea" formControlName="upSell" rows="5" cols="85"></textarea>
-            </div>
+            </div> -->
 
           </div>
 

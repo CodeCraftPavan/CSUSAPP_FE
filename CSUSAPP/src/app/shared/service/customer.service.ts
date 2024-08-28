@@ -32,5 +32,13 @@ export class CustomerService {
   updateAssociate(data:any) {
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.customerAssociate.updateAssociate,data)
   }
+
+  addCustomer(data:any){
+    return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.addCustomer,data)
+  }
+
+  updateCustomer(data:any){
+    return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.EditCustomer,data)
+  }
   
 }

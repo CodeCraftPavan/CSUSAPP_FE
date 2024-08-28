@@ -36,10 +36,14 @@ export class AddCustomerComponent {
     this.addCustomerForm = this.formBuilder.group({
       fullName: [''],
       region: [''],
-      servicesSold: [''],
-      associates: [''],
-      crossSell: [''],
-      upSell: [''],
+      Servicenames: [''],
+      AssociatesNames: [''],
+      abbrevation: [''],
+      industrySegment: [''],
+      notes: [''],
+      status: [''],
+      // crossSell: [''],
+      // upSell: [''],
     })
   
   }
@@ -257,6 +261,27 @@ export class AddCustomerComponent {
       }
     });
 
+  }
+
+  addData(){
+    // this.addCustomerForm.addControl('id',this.formBuilder.control(''));
+    // this.addCustomerForm.addControl('Servicenames','');
+    // this.addCustomerForm.addControl('AssociatesNames','');
+    // this.addCustomerForm.patchValue({
+    //   id: this.customerData.id,
+    //   // Servicenames: 'data',
+    //   // AssociatesNames: 'data',
+    // })
+    this.customerService.addCustomer(this.addCustomerForm.value).subscribe((data: any) => {
+      if (data.status == 200) {
+        // this.editDialogVisible = false;
+        this.toastrService.success('Service Updated successfully');
+        // this.GetAllReferral();
+      }
+      else {
+        return;
+      }
+    })
   }
 
  
