@@ -1,13 +1,15 @@
-<div class="p-4">
+
+<div class="d-flex page-header py-1">
+  <div class="p-2 me-auto page-title" >Add New Customer</div>
+
+</div>
+
+<div class="p-2 sec-customer">
 
     <form [formGroup]="addCustomerForm" (ngSubmit)="submitAddUser()">
 
         <div class="row">
-            <div class="form-group col-lg-6 mb-3">
-               <label for="title" class="card-text">Abbrevation</label>
-               <input type="text"  class="form-control" formControlName="abbrevation">
-             </div>
-
+           
              <div class="form-group col-lg-6 mb-3">
                <label for="name" class="card-text">Full Name</label>
                <input type="text"   class="form-control" formControlName="fullName" >
@@ -17,74 +19,76 @@
                 <label for="title" class="card-text">Region</label>
                 <input type="text"  class="form-control" formControlName="region">
               </div>
- 
+
               <div class="form-group col-lg-6 mb-3">
-                <label for="name" class="card-text">Industry Segment</label>
-                <select   class="form-select" formControlName="industrySegment"   placeholder="enter " >
-                  <!-- <option > Select Status</option> -->
-                  <option *ngFor="let item of IndSegmentList"  [value]="item.id" > {{item.label }}</option>
-                </select>
+                <label for="title" class="card-text">Services Sold</label>
+               <textarea class="form-textarea" formControlName="servicesSold" rows="5" cols="85"></textarea>
               </div>
 
               <div class="form-group col-lg-6 mb-3">
-                <label for="title" class="card-text">notes</label>
-                <input type="text"  class="form-control" formControlName="notes">
+                <label for="title" class="card-text">Associates</label>
+               <textarea class="form-textarea" formControlName="associates" rows="5" cols="85"></textarea>
               </div>
- 
+
               <div class="form-group col-lg-6 mb-3">
-                <label for="name" class="card-text">status</label>
-                <select   class="form-select" formControlName="status"   placeholder="enter " >
-                  <!-- <option > Select Status</option> -->
-                  <option *ngFor="let item of statusList"  [value]="item.id" > {{item.label }}</option>
-                </select>
+                <label for="title" class="card-text">Cross Sell</label>
+               <textarea class="form-textarea" formControlName="crossSell" rows="5" cols="85"></textarea>
+              </div>
+
+              <div class="form-group col-lg-6 mb-3">
+                <label for="title" class="card-text">Up Sell</label>
+               <textarea class="form-textarea" formControlName="upSell" rows="5" cols="85"></textarea>
               </div>
 
             </div>
 
-            <div class="d-flex justify-content-end">
-              <button type="button" class="btn btn-primary" (click)="addsoldServices()" >Add Sold Services</button>
+            <div class="d-flex justify-content-end mt-1">
+              <button type="submit" class="btn btn-primary"  >Save</button>
             </div>
-
-            <div class="col-lg-3">
-
-            <div formArrayName="soldServices"  >
-              <div *ngFor="let x of soldServicesArray.controls; let i=index" [formGroupName]="i">
-                <label for="title" class="card-text">Sold Service Name</label>
-                <input class="form-control" formControlName="serviceName" type="text">
-              </div>
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-end mt-5">
-            <button type="button" class="btn btn-primary" (click)="addassociates()" >Add Associate</button>
-          </div>
-
-          <div class="col-lg-3">
-
-            <div formArrayName="associates"  >
-              <div *ngFor="let x of associatesArray.controls; let i=index" [formGroupName]="i">
-               
-                <div class="form-group">
-                  <label for="title" class="card-text">Associate Name</label>
-                  <input class="form-control" formControlName="associateName" type="text">
-                </div>
-
-                <div class="form-group">
-                  <label for="title" class="card-text">Role</label>
-                  <input class="form-control" formControlName="role" type="text">
-                </div>
-
-                <div class="form-group">
-                  <label for="title" class="card-text">Contact</label>
-                  <input class="form-control" formControlName="contactInformation" type="text">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="d-flex justify-content-end mt-5">
-            <button type="submit" class="btn btn-primary"  >Save</button>
-          </div>
 
     </form>
 </div>
+
+<!-- <div class="p-2 sec-services">
+
+  <div class="d-flex page-header py-1">
+    <div class="p-2 me-auto page-title">Services</div>
+  </div>
+
+  <form [formGroup]="searchForm" class="d-flex m-2" role="search" style="width: 50%;">
+    <input class="form-control me-2" formControlName="serviceName" type="search" placeholder="Search Solutions"
+      aria-label="Search">
+    <button class="btn btn-outline-success" (click)="addService()">Search</button>
+  </form>
+
+  <div class="data-layout">
+    <div class="d-flex flex-row">
+      <div class="me-auto service-name">Github <sup class="service-close" (click)="removeService()"> X </sup> </div>
+    </div>
+
+    <h6 class="text-muted">12/12/2024</h6>
+  </div>
+</div> -->
+
+
+ <!-- <div class="p-2 sec-associate">
+  <div class="d-flex page-header py-1">
+    <div class="p-2 me-auto page-title" >Associates</div>
+  </div>
+
+  <form [formGroup]="searchAssociateForm" class="d-flex m-2" role="search" style="width: 50%;">
+    <input  class="form-control me-2" formControlName="searchTerm" type="search" placeholder="Search Solutions" aria-label="Search">
+    <button class="btn btn-outline-success" (click)="addService()"  >Search</button>
+  </form>
+
+  <div class="data-layout">
+    <div class="d-flex flex-row">
+      <div class="me-auto service-name">Github <sup class="service-close" (click)="removeService()"> X </sup> </div>
+    </div>
+
+    <h6 class="text-muted">12/12/2024</h6>
+  </div>
+
+
+  
+</div>  -->

@@ -10,13 +10,9 @@
           The actual rendered columns are set as a property on the row definition" -->
   
     <!-- Position Column -->
-    <ng-container matColumnDef="abbrevation">
-      <th mat-header-cell *matHeaderCellDef>abbrevation </th>
-      <td mat-cell *matCellDef="let element"> {{element.abbrevation}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef>fullName </th>
+        <th mat-header-cell *matHeaderCellDef>Company Name </th>
         <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
       </ng-container>
 
@@ -25,8 +21,23 @@
         <td mat-cell *matCellDef="let element"> {{element.region}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>status </th>
+      <ng-container matColumnDef="solutions">
+        <th mat-header-cell *matHeaderCellDef>Solutions </th>
+        <td mat-cell *matCellDef="let element"> {{element.abbrevation}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="associate">
+        <th mat-header-cell *matHeaderCellDef>Associates </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="crosssell">
+        <th mat-header-cell *matHeaderCellDef>Cross sell </th>
+        <td mat-cell *matCellDef="let element"> {{element.abbrevation}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="upsell">
+        <th mat-header-cell *matHeaderCellDef>Up sell </th>
         <td mat-cell *matCellDef="let element"> {{element.status}} </td>
       </ng-container>
 
@@ -34,16 +45,10 @@
       <ng-container matColumnDef="view">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-            <button type="button" class="btn btn-primary" (click)="editCustomer(element)" >Edit</button>
+            <button type="button" class="btn btn-primary" (click)="editCustomer(element)" >View</button>
             </td>
       </ng-container>
 
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let element">
-            <button type="button" class="btn btn-primary" (click)="editCustomer(element)" >Edit</button>
-            </td>
-      </ng-container>
   
   
     <!-- <ng-container matColumnDef="name">

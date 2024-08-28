@@ -18,7 +18,7 @@ export class CustomersListComponent implements OnInit {
     page_size: 10
   };
 
-  displayedColumns: string[] = ['abbrevation','fullName','region','status','view','edit'];
+  displayedColumns: string[] = ['fullName','region','solutions','associate','crosssell','upsell','view'];
 
   constructor( 
     private router: Router,

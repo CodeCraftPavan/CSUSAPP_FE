@@ -9,6 +9,9 @@ import { CustomersListComponent } from './customers-list/customers-list.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AssociateComponent } from './associate/associate.component';
+import { ServiceComponent } from './service/service.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,16 @@ import { ViewCustomerComponent } from './view-customer/view-customer.component';
     AddCustomerComponent,
     EditCustomerComponent,
     CustomersListComponent,
-    ViewCustomerComponent
+    ViewCustomerComponent,
+    AssociateComponent,
+    ServiceComponent
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,MatDialogModule
   ]
 })
 export class CustomerModule { }

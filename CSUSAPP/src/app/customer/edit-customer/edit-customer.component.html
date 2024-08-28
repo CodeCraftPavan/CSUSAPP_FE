@@ -1,4 +1,56 @@
-<div class="p-4">
+
+<div class="d-flex page-header py-1">
+  <div class="p-2 me-auto page-title" >Edit Customer</div>
+</div>
+
+<div class="p-2 sec-customer">
+
+  <form [formGroup]="addCustomerForm" (ngSubmit)="submitAddUser()">
+
+      <div class="row">
+         
+           <div class="form-group col-lg-6 mb-3">
+             <label for="name" class="card-text">Full Name</label>
+             <input type="text"   class="form-control" formControlName="fullName" >
+           </div>
+
+           <div class="form-group col-lg-6 mb-3">
+              <label for="title" class="card-text">Region</label>
+              <input type="text"  class="form-control" formControlName="region">
+            </div>
+
+            <div class="form-group col-lg-6 mb-3">
+              <label for="title" class="card-text">Services Sold</label>
+             <textarea class="form-textarea" formControlName="servicesSold" rows="5" cols="85"></textarea>
+            </div>
+
+            <div class="form-group col-lg-6 mb-3">
+              <label for="title" class="card-text">Associates</label>
+             <textarea class="form-textarea" formControlName="associates" rows="5" cols="85"></textarea>
+            </div>
+
+            <div class="form-group col-lg-6 mb-3">
+              <label for="title" class="card-text">Cross Sell</label>
+             <textarea class="form-textarea" formControlName="crossSell" rows="5" cols="85"></textarea>
+            </div>
+
+            <div class="form-group col-lg-6 mb-3">
+              <label for="title" class="card-text">Up Sell</label>
+             <textarea class="form-textarea" formControlName="upSell" rows="5" cols="85"></textarea>
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-end mt-1">
+            <button type="submit" class="btn btn-primary"  >Update</button>
+          </div>
+
+  </form>
+</div>
+
+
+<!-- 
+<div class="p-2 sec-customer">
 
     <form [formGroup]="addCustomerForm" (ngSubmit)="submitAddUser()">
 
@@ -21,7 +73,6 @@
               <div class="form-group col-lg-6 mb-3">
                 <label for="name" class="card-text">Industry Segment</label>
                 <select   class="form-select" formControlName="industrySegment"   placeholder="enter " >
-                  <!-- <option > Select Status</option> -->
                   <option *ngFor="let item of IndSegmentList"  [value]="item.id" > {{item.label }}</option>
                 </select>
               </div>
@@ -34,18 +85,26 @@
               <div class="form-group col-lg-6 mb-3">
                 <label for="name" class="card-text">status</label>
                 <select   class="form-select" formControlName="status"   placeholder="enter " >
-                  <!-- <option > Select Status</option> -->
                   <option *ngFor="let item of statusList"  [value]="item.id" > {{item.label }}</option>
                 </select>
               </div>
 
-            </div>
+            </div> -->
 
-            <div class="d-flex justify-content-end">
+            <!-- <div class="d-flex page-header py-1">
+              <div class="p-2 me-auto page-title" >Services</div>
+              <div class="p-2 ">
+                <button (click)="addsoldServices()" type="button" class="btn btn-primary">Add Services</button>
+              </div>
+           
+            </div> -->
+
+            <!-- <div class="d-flex justify-content-end">
               <button type="button" class="btn btn-primary" (click)="addsoldServices()" >Add Sold Services</button>
-            </div>
+            </div> -->
 
-            <div class="col-lg-3">
+
+            <!-- <div class="col-lg-3">
 
             <div formArrayName="soldServices"  >
               <div *ngFor="let x of soldServicesArray.controls; let i=index" [formGroupName]="i">
@@ -53,13 +112,13 @@
                 <input class="form-control" formControlName="serviceName" type="text">
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="d-flex justify-content-end mt-5">
-            <button type="button" class="btn btn-primary" (click)="addassociates()" >Add Associate</button>
-          </div>
+          <!-- <div class="d-flex justify-content-end mt-5">
+            <button type="button" class="btn btn-primary" (click)="openDialog()" >Add Associate</button>
+          </div> -->
 
-          <div class="col-lg-3">
+          <!-- <div class="col-lg-3">
 
             <div formArrayName="associates"  >
               <div *ngFor="let x of associatesArray.controls; let i=index" [formGroupName]="i">
@@ -83,124 +142,52 @@
           </div>
 
           <div class="d-flex justify-content-end mt-5">
-            <button type="submit" class="btn btn-primary"  >Update</button>
-          </div>
+            <button type="submit" class="btn btn-primary"  >Save</button>
+          </div> -->
 
-    </form>
-</div>
+    <!-- </form>
+</div> -->
 
-<div class="d-flex justify-content-start m-3">
-  <button type="button" class="btn btn-primary"  >Services</button>
-</div>
+<!-- <div class="p-2 sec-services">
 
-<table mat-table [dataSource]="servicesList" class="mat-elevation-z8">
+  <div class="d-flex page-header py-1">
+    <div class="p-2 me-auto page-title">Solutions</div>
+  </div>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+  <form [formGroup]="searchForm" class="d-flex m-2" role="search" style="width: 50%;">
+    <input class="form-control me-2" formControlName="serviceName" type="search" placeholder="Search Solutions"
+      aria-label="Search">
+    <button class="btn btn-outline-success" (click)="addService()">Add</button>
+  </form>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="serviceName">
-    <th mat-header-cell *matHeaderCellDef>Service Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.serviceName}} </td>
-  </ng-container>
+  <div class="data-layout" *ngFor="let service of servicesList; let i = index" >
+    <div class="d-flex flex-row">
+      <div class="me-auto service-name"> {{service.serviceName}} <sup class="service-close" (click)="removeService()"> X </sup> </div>
+    </div>
 
-  <ng-container matColumnDef="saleDate">
-      <th mat-header-cell *matHeaderCellDef>Sale Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.saleDate}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="view">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element">
-          <button type="button" class="btn btn-primary" (click)="editService(element)" >Edit</button>
-          </td>
-    </ng-container>
-
-    <!-- <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element">
-          <button type="button" class="btn btn-primary" (click)="editCustomer(element)" >Edit</button>
-          </td>
-    </ng-container> -->
+    <h6 class="text-muted">{{service.saleDate | date:'dd-MM-yyyy' }}</h6>
+  </div>
+</div> -->
 
 
-  <!-- <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+ <!-- <div class="p-2 sec-associate">
+  <div class="d-flex page-header py-1">
+    <div class="p-2 me-auto page-title" >Associates</div>
+  </div>
 
- 
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+  <form [formGroup]="searchAssociateForm" class="d-flex m-2" role="search" style="width: 50%;">
+    <input  class="form-control me-2" formControlName="searchTerm" type="search" placeholder="Search Solutions" aria-label="Search">
+    <button class="btn btn-outline-success" (click)="addService()"  >add</button>
+  </form>
 
+  <div class="data-layout" *ngFor="let service of associatesList; let i = index">
+    <div class="d-flex flex-row">
+      <div class="me-auto service-name">{{service.associateName}} <sup class="service-close" (click)="removeService()"> X </sup> </div>
+    </div>
 
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container> -->
-
-  <tr mat-header-row *matHeaderRowDef="servicedisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: servicedisplayedColumns;"></tr>
-</table>
-
-<div class="d-flex justify-content-start m-3">
-  <button type="button" class="btn btn-primary"  >Asscociate</button>
-</div>
-
-<table mat-table [dataSource]="associatesList" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="associateName">
-    <th mat-header-cell *matHeaderCellDef>Associate Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.associateName}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef>Role </th>
-      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="contactInformation">
-      <th mat-header-cell *matHeaderCellDef>Contact Information </th>
-      <td mat-cell *matCellDef="let element"> {{element.contactInformation}} </td>
-    </ng-container>
-
- 
+    <h6 class="text-muted">{{service.contactInformation}}</h6>
+  </div>
 
 
-
-
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element">
-          <button type="button" class="btn btn-primary" (click)="editAssociate(element)" >Edit</button>
-          </td>
-    </ng-container>
-
-
-  <!-- <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
- 
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container> -->
-
-  <tr mat-header-row *matHeaderRowDef="associatedisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: associatedisplayedColumns;"></tr>
-</table>
-
+  
+</div>  -->

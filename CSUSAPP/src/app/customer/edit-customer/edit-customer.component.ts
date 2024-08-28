@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/assets/mockData/enumValues';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { CustomerService } from 'src/app/shared/service/customer.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-edit-customer',
@@ -18,30 +22,82 @@ export class EditCustomerComponent {
   servicesList:any;
   associatesList:any;
 
+  searchForm!: FormGroup;
+  searchAssociateForm !: FormGroup;
+
   associatedisplayedColumns: string[] = ['associateName','role','contactInformation','edit'];
   servicedisplayedColumns: string[] = ['serviceName','saleDate','view'];
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder,
+    private customerService: CustomerService,
+    private toastrService: ToastrService,
+  ){
     this.addCustomerForm = this.formBuilder.group({
-      abbrevation: [''],
       fullName: [''],
       region: [''],
-      industrySegment: [''],
-      accountCreationDate: [''],
-      notes: [''],
-      status: [''],
-      soldServices: this.formBuilder.array([]),
-      associates: this.formBuilder.array([]),
+      servicesSold: [''],
+      associates: [''],
+      crossSell: [''],
+      upSell: [''],
     })
   }
 
   ngOnInit() {
+  
+      this.searchForm = this.formBuilder.group({
+        customerId : [''],
+        serviceName: [''],
+        saleDate : [''],
+        status : [''],
+      });
+  
+      this.searchAssociateForm = this.formBuilder.group({
+        customerId: [''],
+        associateName: [''],
+        contactInformation : [''],
+        roles : [''],
+      });
+  
+      this.searchForm.get('serviceName')?.valueChanges
+        .pipe(
+          debounceTime(300), // Wait for the user to stop typing for 300ms
+          distinctUntilChanged(), // Only proceed if the new value is different from the last
+          filter(value => value.trim().length > 0) // Only proceed if the input is not empty
+        )
+        .subscribe(searchTerm => {
+          this.performSearch(searchTerm);
+        });
+  
+  
+        this.searchAssociateForm.get('associateName')?.valueChanges
+        .pipe(
+          debounceTime(300), // Wait for the user to stop typing for 300ms
+          distinctUntilChanged(), // Only proceed if the new value is different from the last
+          filter(value => value.trim().length > 0) // Only proceed if the input is not empty
+        )
+        .subscribe(searchTerm => {
+          this.performSearchAssociate(searchTerm);
+        });
+  
+    
+
+
   let res :any  = localStorage.getItem("customerData");
   this.customerData = JSON.parse(res)
   console.log(this.customerData,'customer');
   this.updateCustomer()
-  this.servicesList = this.customerData.soldServices.$values;
-  this.associatesList = this.customerData.associates.$values;
+  }
+
+  performSearch(searchTerm: any) {
+    // Logic for searching, e.g., filtering a list or making an API call
+    console.log('Searching for:', searchTerm);
+    // Implement your search logic here
+  }
+
+  performSearchAssociate(searchTerm: any) {
+    // Logic for searching, e.g., filtering a list or making an API call
+    console.log('Searching for:', searchTerm);
+    // Implement your search logic here
   }
 
   get soldServicesArray() {
@@ -125,6 +181,10 @@ export class EditCustomerComponent {
   }
 
   updateCustomer(){
+
+    this.servicesList = this.customerData.soldServices.$values;
+  this.associatesList = this.customerData.associates.$values;
+
     this.addCustomerForm.patchValue({
       abbrevation:this.customerData.abbrevation,
       fullName:this.customerData.fullName,
@@ -140,6 +200,76 @@ export class EditCustomerComponent {
   }
 
   editAssociate(element:any){
+
+  }
+
+  addService(){
+    this.searchForm.patchValue({
+      customerId: this.customerData.id,
+      saleDate: new Date(),
+      status:0
+    })
+    const searchTerm = this.searchForm.get('serviceName')?.value;
+     this.customerService.addCustomerService(this.searchForm.value).subscribe((data: any) => {
+        if (data.status == 200) {
+          // this.editDialogVisible = false;
+          this.toastrService.success('Service Added successfully');
+          // this.GetAllReferral();
+        }
+        else {
+          return;
+        }
+      })
+    
+  }
+
+  addAssociate(){
+
+    this.searchForm.patchValue({
+      customerId: this.customerData.id,
+    })
+
+   // const searchTerm = this.searchAssociateForm.get('searchTerm')?.value;
+    this.customerService.addAssociate(this.searchForm.value).subscribe((data: any) => {
+      if (data.status == 200) {
+        // this.editDialogVisible = false;
+        this.toastrService.success('Service Updated successfully');
+        // this.GetAllReferral();
+      }
+      else {
+        return;
+      }
+    })
+  }
+
+  updateService(){
+     this.customerService.updateCustomerService(this.searchForm.value).subscribe((data: any) => {
+        if (data.status == 200) {
+          // this.editDialogVisible = false;
+          this.toastrService.success('Service Added successfully');
+          // this.GetAllReferral();
+        }
+        else {
+          return;
+        }
+      })
+    
+  }
+
+  updateAssociate(){
+    this.customerService.updateAssociate(this.searchForm.value).subscribe((data: any) => {
+      if (data.status == 200) {
+        // this.editDialogVisible = false;
+        this.toastrService.success('Service Updated successfully');
+        // this.GetAllReferral();
+      }
+      else {
+        return;
+      }
+    })
+  }
+
+  removeService(){
 
   }
 
