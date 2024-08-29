@@ -8,7 +8,18 @@
               <div class="col-md-9 col-lg-8 mx-auto">
                 <!-- Login Form -->
                 <div >
-                <h3 class="login-heading mb-4"><strong>Welcome To CSUSAPP!</strong></h3>               
+
+                  <div >
+
+                  <img src="../../../assets/CANARYS NEW LOGO BLACK 1.png" width="300px" height="auto">
+                </div>
+
+
+                <h3 class="login-heading my-2"><strong>Welcome To CSUS-APP!</strong></h3> 
+
+                <p class="text text-normal">New user? <span><a routerLink="/signup" class="text text-links">Create an account</a></span>
+
+              
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                   <div class="form-group mb-3">
                     <label class="form-control-label">Email</label>
@@ -41,6 +52,8 @@
                   </div>
                 
                 </form>
+
+
                 </div>
               </div>
             </div>

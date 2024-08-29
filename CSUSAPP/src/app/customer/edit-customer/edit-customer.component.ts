@@ -20,6 +20,7 @@ export class EditCustomerComponent {
   statusList = statusValue
   ServicesList = ServicesValue
   customerData:any;
+  customerID:any;
   servicesList:any;
   associatesList:any;
 
@@ -44,8 +45,8 @@ export class EditCustomerComponent {
       industrySegment: [''],
       notes: [''],
       status: [''],
-      // crossSell: [''],
-      // upSell: [''],
+       crosSell: [''],
+       upSell: [''],
     })
   }
 
@@ -90,9 +91,9 @@ export class EditCustomerComponent {
 
 
   let res :any  = localStorage.getItem("customerData");
-  this.customerData = JSON.parse(res)
-  console.log(this.customerData,'customer');
-  this.updateCustomer()
+ let userData = JSON.parse(res)
+  this.customerID  = userData.id
+  this.getCustometByID()
   }
 
   performSearch(searchTerm: any) {
@@ -193,16 +194,19 @@ export class EditCustomerComponent {
   // this.associatesList = this.customerData.associates.$values;
 
     this.addCustomerForm.patchValue({
+      id:this.customerData.id,
       abbrevation:this.customerData.abbrevation,
       fullName:this.customerData.fullName,
       region:this.customerData.region,
       industrySegment:this.customerData.industrySegment,
       notes:this.customerData.notes,
       status:this.customerData.status,
-      servicenames:this.customerData.servicenames,
-      associatesNames:this.customerData.associatesNames,
+      servicenames:this.customerData.serviceNames,
+      associatesNames:this.customerData.associateNames,
+      crosSell:this.customerData.crosSell,
+      upSell:this.customerData.upSell,
     })
-    console.log(this.addCustomerForm.value);
+    console.log(this.addCustomerForm.value,'customer data');
     
   }
 
@@ -286,20 +290,29 @@ export class EditCustomerComponent {
   }
 
   updateData(){
-    // this.addCustomerForm.addControl('id',this.formBuilder.control(''));
-    // this.addCustomerForm.addControl('Servicenames','');
-    // this.addCustomerForm.addControl('AssociatesNames','');
-    this.addCustomerForm.patchValue({
-      id: this.customerData.id,
-      // Servicenames: 'data',
-      // AssociatesNames: 'data',
-    })
+     
+    // this.addCustomerForm.patchValue({
+    //   id: this.customerData.id,
+    // })
     this.customerService.updateCustomer(this.addCustomerForm.value).subscribe((data: any) => {
       if (data.statuscode == 200) {
-        this.router.navigate(['/customer/customersList']);
-        // this.editDialogVisible = false;
+     //   this.router.navigate(['/customer/customersList']);
         this.toastrService.success('Service Updated successfully');
-        // this.GetAllReferral();
+        this.getCustometByID()
+      }
+      else {
+        return;
+      }
+    })
+  }
+
+  getCustometByID(){
+    var info: any = {};
+    info.id = this.customerID
+    this.customerService.getCustomerBYId(info).subscribe((resp: any) => {
+      if (resp.statuscode == 200) {
+      this.customerData = resp.data
+     this.updateCustomer()
       }
       else {
         return;

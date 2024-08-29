@@ -6,11 +6,14 @@ import { CustomersListComponent } from './customers-list/customers-list.componen
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 const routes: Routes = [
+  { path: '', component:HomeComponent,
+    children: [
   {path: '', redirectTo: 'customersList',pathMatch: 'full'},
   {path: 'home', component:HomeComponent}, 
   {path: 'addCustomer',component:AddCustomerComponent},
   {path: 'customersList',component:CustomersListComponent},
   {path: 'editCustomer',component:EditCustomerComponent}
+]}
 ];
 
 @NgModule({

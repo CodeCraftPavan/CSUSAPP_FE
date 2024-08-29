@@ -15,6 +15,7 @@ export const APP_DI_CONFIG: any = {
           getAllCustomer: "api/Customer/Get-Customers",
           addCustomer: "api/Customer/Add-Customer",
           EditCustomer: "api/Customer/Edit-Customer",
+          getCustomerBYId: "api/Customer/Get-Customer-By-Id",
         },
         Services:{
             getAllServices: "api/AddServiceServices/Get-Available-Services",

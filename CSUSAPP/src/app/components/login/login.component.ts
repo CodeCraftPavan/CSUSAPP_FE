@@ -32,20 +32,21 @@ export class LoginComponent {
   }
 
   onLogin() {
-    if (this.loginForm.valid) {
-      this.customerService.login(this.loginForm.value).subscribe({next:(data: any) => {
-        if(data.data){
-        localStorage.setItem('Token', data.data.token);
-        localStorage.setItem('firstName', data.data.firstName);
-        localStorage.setItem('lastName', data.data.lastName);
-        this.router.navigate(['/dashboard']);
-        this.loginText = "Log In";
-        }
-      },error: (error:any) => {
-        this.toastrService.error('Login Failed. Please try again.')
-        this.loginText = 'Log In'
-      }});
+    this.router.navigate(['/customer']);
+    // if (this.loginForm.valid) {
+    //   this.customerService.login(this.loginForm.value).subscribe({next:(data: any) => {
+    //     if(data.data){
+    //     localStorage.setItem('Token', data.data.token);
+    //     localStorage.setItem('firstName', data.data.firstName);
+    //     localStorage.setItem('lastName', data.data.lastName);
+    //     this.router.navigate(['/customer']);
+    //     this.loginText = "Log In";
+    //     }
+    //   },error: (error:any) => {
+    //     this.toastrService.error('Login Failed. Please try again.')
+    //     this.loginText = 'Log In'
+    //   }});
      
-    }
+    // }
   }
 }

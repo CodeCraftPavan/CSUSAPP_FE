@@ -2,14 +2,16 @@
     min-height: 100vh;
   }
   
-  /* .bg-image {
-    background-image: url('../../../assets/pptlogin.jpg');
+  .bg-image {
+    background-image: url('../../../assets/mockData/file.jpeg');
     background-size: cover;
     background-position: center;
-  } */
+  }
   
   .login-heading {
-    font-weight: 300;
+    /* font-weight: 300; */
+    /* text-align: center; */
+    color: black;
   }
   
   .btn-login {

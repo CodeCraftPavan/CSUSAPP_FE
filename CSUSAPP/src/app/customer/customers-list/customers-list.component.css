@@ -3,3 +3,8 @@ table {
     /* background-color: white;
     color: black; */
   }
+
+  .table>thead {
+    background-color: #88D66C;
+    color: white;
+}

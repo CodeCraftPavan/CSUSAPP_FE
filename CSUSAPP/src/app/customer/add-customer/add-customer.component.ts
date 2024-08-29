@@ -7,6 +7,7 @@ import { ServiceComponent } from '../service/service.component';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -32,18 +33,19 @@ export class AddCustomerComponent {
     public dialog: MatDialog,
     private customerService: CustomerService,
     private toastrService: ToastrService,
+    private router: Router,
   ){
     this.addCustomerForm = this.formBuilder.group({
       fullName: [''],
       region: [''],
-      Servicenames: [''],
-      AssociatesNames: [''],
+      serviceNames: [''],
+      associatenames: [''],
       abbrevation: [''],
       industrySegment: [''],
       notes: [''],
       status: [''],
-      // crossSell: [''],
-      // upSell: [''],
+      crosSell: [''],
+      upSell: [''],
     })
   
   }
@@ -264,19 +266,10 @@ export class AddCustomerComponent {
   }
 
   addData(){
-    // this.addCustomerForm.addControl('id',this.formBuilder.control(''));
-    // this.addCustomerForm.addControl('Servicenames','');
-    // this.addCustomerForm.addControl('AssociatesNames','');
-    // this.addCustomerForm.patchValue({
-    //   id: this.customerData.id,
-    //   // Servicenames: 'data',
-    //   // AssociatesNames: 'data',
-    // })
     this.customerService.addCustomer(this.addCustomerForm.value).subscribe((data: any) => {
-      if (data.status == 200) {
-        // this.editDialogVisible = false;
-        this.toastrService.success('Service Updated successfully');
-        // this.GetAllReferral();
+      if (data.statuscode == 200) {
+        this.toastrService.success('Customer Added successfully');
+        this.router.navigate(['/customer/customersList']);
       }
       else {
         return;

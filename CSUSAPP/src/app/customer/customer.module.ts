@@ -21,14 +21,13 @@ import { ServiceComponent } from './service/service.component';
     CustomersListComponent,
     ViewCustomerComponent,
     AssociateComponent,
-    ServiceComponent
-  ],
+    ServiceComponent  ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,MatDialogModule
+    MatTableModule,MatDialogModule,
   ]
 })
 export class CustomerModule { }

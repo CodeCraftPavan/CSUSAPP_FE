@@ -38,18 +38,18 @@ import { AuthInterceptor } from './shared/authentication/auth.interceptor';
     ToastrModule.forRoot(
       {
         closeButton: true,
-        timeOut: 3000,// 3 seconds
+        timeOut: 5000,// 3 seconds
         progressBar: true,
       }
     ),
     BrowserAnimationsModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor, 
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor, 
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })
