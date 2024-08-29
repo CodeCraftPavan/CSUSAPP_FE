@@ -22,7 +22,7 @@ export class UserService {
 
   login(data: any) {
     //return this.http.post<any>("https://localhost:44361/api/AuthManagement/Sign-In", data)
-    return this.http.post<any>('https://localhost:44351/Sign-In', data);
+    return this.http.post<any>('http://10.0.0.163:8085/Sign-In', data);
   }
 
 //   verifyEmail(data: any) {
@@ -34,7 +34,7 @@ export class UserService {
 //   }
 
   createUser(data: any) {
-    return this.http.post<any>('https://localhost:44351/api/Users/Create-User', data);
+    return this.http.post<any>('http://10.0.0.163:8085/api/Users/Create-User', data);
   }
   
 

@@ -36,7 +36,9 @@ export class LoginComponent {
       this.customerService.login(this.loginForm.value).subscribe({next:(data: any) => {
         if(data.data){
         localStorage.setItem('Token', data.data.token);
-         this.router.navigate(['/customer/customersList']);
+        localStorage.setItem('firstName', data.data.firstName);
+        localStorage.setItem('lastName', data.data.lastName);
+        this.router.navigate(['/dashboard']);
         this.loginText = "Log In";
         }
       },error: (error:any) => {
