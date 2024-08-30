@@ -46,6 +46,9 @@ export class AddCustomerComponent {
       status: [''],
       crosSell: [''],
       upSell: [''],
+      personResponsility: [''],
+      goals: [''],
+      accountHistory: [''],
     })
   
   }
@@ -268,7 +271,7 @@ export class AddCustomerComponent {
   addData(){
     this.customerService.addCustomer(this.addCustomerForm.value).subscribe((data: any) => {
       if (data.statuscode == 200) {
-        this.toastrService.success('Customer Added successfully');
+        this.toastrService.success("Customer details added successfully.");
         this.router.navigate(['/customer/customersList']);
       }
       else {

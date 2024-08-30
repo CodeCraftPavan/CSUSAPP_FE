@@ -47,6 +47,9 @@ export class EditCustomerComponent {
       status: [''],
        crosSell: [''],
        upSell: [''],
+       personResponsility: [''],
+       goals: [''],
+       accountHistory: [''],
     })
   }
 
@@ -205,6 +208,9 @@ export class EditCustomerComponent {
       associatesNames:this.customerData.associateNames,
       crosSell:this.customerData.crosSell,
       upSell:this.customerData.upSell,
+      personResponsility:this.customerData.personResponsility,
+      goals:this.customerData.goals,
+      accountHistory:this.customerData.accountHistory,
     })
     console.log(this.addCustomerForm.value,'customer data');
     
@@ -229,7 +235,7 @@ export class EditCustomerComponent {
         if (data.status == 200) {
           this.router.navigate(['/customer/customersList']);
           // this.editDialogVisible = false;
-          this.toastrService.success('Service Added successfully');
+          this.toastrService.success('Customer details updated successfully.');
           // this.GetAllReferral();
         }
         else {

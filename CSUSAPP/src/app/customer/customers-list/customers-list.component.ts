@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/shared/service/customer.service';
+import { AssociateComponent } from '../associate/associate.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customers-list',
@@ -21,14 +23,16 @@ export class CustomersListComponent implements OnInit {
   };
 
   displayedColumns: string[] = ['fullName','region','servicenames','associatesNames','view'];
-
+  dialogRef:any;
   constructor( 
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    public dialog: MatDialog,
    ) {   }
 
   ngOnInit(): void {
    this.getcustomers(this.Pagination)
+   this.openDialog()
   }
 
   getcustomers(pagination:any){
@@ -37,6 +41,7 @@ export class CustomersListComponent implements OnInit {
       this.dataSource = resp.items.$values;
       let count:number  = (resp.totalCount/10);
       this.totalPageCount = Math.ceil(count)
+      this.dialogRef.close();
   })
  }
 
@@ -60,6 +65,15 @@ nextPage() {
   this.pageNo++
   this.Pagination.pageNumber = this.pageNo;
   this.getcustomers(this.Pagination);
+}
+
+openDialog(): void {
+  this.dialogRef = this.dialog.open(AssociateComponent, {
+    width: '30%',
+    // height:'40%',
+     panelClass: 'custom-dialog-container',
+    data: {}
+  });
 }
 
 }
