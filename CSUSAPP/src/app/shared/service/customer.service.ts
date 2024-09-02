@@ -21,6 +21,10 @@ export class CustomerService {
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.getCustomerBYId,data)
   }
 
+  searchCustomer(data:any){
+    return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.searchCustomer,data)
+  }
+
   addCustomerService(data:any){
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.customerService.addService,data)
   }

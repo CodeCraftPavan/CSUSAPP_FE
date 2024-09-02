@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 import { AssociateComponent } from '../associate/associate.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MasterService } from 'src/app/service/master.service/master.service';
 
 @Component({
   selector: 'app-customers-list',
@@ -14,6 +15,8 @@ export class CustomersListComponent implements OnInit {
 
   pageStartNo: number = 0
   pageNo: number = 1
+
+  searchKey:string = '';
 
   totalPageCount:number = 1;
   dataSource:any = [];
@@ -28,7 +31,13 @@ export class CustomersListComponent implements OnInit {
     private router: Router,
     private customerService: CustomerService,
     public dialog: MatDialog,
-   ) {   }
+    private dataService: MasterService
+   ) { 
+    this.dataService.currentUser.subscribe( user => {
+      this.searchKey = user
+      this.getCustometBySearch();
+    });
+     }
 
   ngOnInit(): void {
    this.getcustomers(this.Pagination)
@@ -74,6 +83,19 @@ openDialog(): void {
      panelClass: 'custom-dialog-container',
     data: {}
   });
+}
+
+getCustometBySearch(){
+  var info: any = {};
+  info.searchTerm = this.searchKey;
+  this.customerService.searchCustomer(info).subscribe((resp: any) => {
+    if (resp.statuscode == 200) {
+      this.dataSource = resp.data.$values;
+    }
+    else {
+      return;
+    }
+  })
 }
 
 }

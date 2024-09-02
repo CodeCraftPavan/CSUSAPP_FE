@@ -1,0 +1,13 @@
+.bg-header {
+    background-color: #2b79c7 !important;
+}
+
+.btn-outline-success {
+    --bs-btn-border-color: #FFFFFF !important;
+    --bs-btn-bg: #198754 !important;
+    color:  #FFFFFF;
+}
+form{
+    width: 500px;
+    margin-left: 15%;
+}
