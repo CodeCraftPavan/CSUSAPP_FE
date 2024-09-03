@@ -5,14 +5,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .page-header{
-  background-color: #BC5A94;
+  background-color: #FFFFFF;
 }
 
 .page-title{
   text-transform: uppercase;
   font-weight: bold;
   font-size: 20px;
-  color: #FFF8E8;
+  color: BLACK;
 }
 
 .title-btn {
@@ -44,6 +44,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 label {
   display: block !important;
+  font-size: 18px !important;
 }
 
 .view-pageNO{

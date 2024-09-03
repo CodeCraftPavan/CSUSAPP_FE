@@ -1,9 +1,11 @@
 
 
-<div class="d-flex page-header py-1 m-3">
-  <div class="p-2 me-auto page-title" >Customer List</div>
+<div class="d-flex page-header m-3" style="width: 94%;padding-left: 3%;">
+  <div class="me-auto" >
+    <h1 class="text-black fw-semibold">  Customer List</h1>
+  </div>
   <div class="page-title " >   
-     <button type="button" class="btn btn-primary" (click)="addCustomer()" >Add Customer</button>
+     <button type="button" class="btn" style="background-color: #2b79c7 !important;color: white;" (click)="addCustomer()" >Add Customer</button>
   </div>
 
 </div>
@@ -11,25 +13,28 @@
 <div class="d-flex justify-content-end m-3">
   </div>
 
-  <table id="datatable" class="table  table-bordered dt-responsive nowrap p-2"
-  style="border-collapse: collapse; border-spacing: 0; ">
+  <table id="datatable" class="table table-responsive  table-bordered"
+ >
   <thead>
       <tr>
+        <th>SL No.</th>
           <th>Company Name</th>
-          <th>region</th>
-          <th>Solutions</th>
+          <th>Region</th>
+          <th>Current Sales</th>
           <th>Associates</th>
-          <th>Cross Sell</th>
-          <th>Up Sell</th>
-          <th></th>
+          <th>Cross Sell Opportunity</th>
+          <th>Up Sale</th>
+          <th>Action</th>
       </tr>
   </thead>
-  <tbody *ngFor="let user of dataSource">
+  <tbody *ngFor="let user of dataSource;let i = index">
       <tr>
-          <td>{{user.fullName  }}</td>
-          <td>{{user.region}}</td>
+        <td>{{ i + 1 }}</td>
+          <td>{{user.fullName | titlecase   }}</td>
+          <td>{{user.region | titlecase  }}</td>
           <td>{{user.servicenames | slice: 0:18 }}{{ user.servicenames.length >18 ? '...' :' ' }}</td>
-          <td>{{user.associatesNames | slice: 0:18 }}{{ user.associatesNames.length >18 ? '...' :' ' }}</td>
+          <td>{{user.associatesNames | titlecase}}</td>
+          <!-- <td>{{user.associatesNames | slice: 0:18 }}{{ user.associatesNames.length >18 ? '...' :' ' }}</td> -->
           <td>{{user.crosSell | slice: 0:18 }}{{ user.crosSell.length >18 ? '...' :' ' }}</td>
           <td>{{user.upSell | slice: 0:18 }}{{ user.upSell.length >18 ? '...' :' ' }}</td>
         <td (click)="editCustomer(user)" class="table-cell">
@@ -39,10 +44,10 @@
   </tbody>
 </table>
 
-<div class="d-flex justify-content-end">
-  <div class="p-2"><button type="button" [disabled]="pageNo == 1" (click)="prevPage()" class="btn btn-primary btn-sm">Previous</button></div>
+<div class="d-flex justify-content-end" style="width: 94%;padding-left: 3%;">
+  <div class="p-2"><button type="button"  style="background-color: #2b79c7 !important;color: white;"  [disabled]="pageNo == 1" (click)="prevPage()" class="btn btn-primary btn-sm">Previous</button></div>
   <div class="pt-3"> <span class="view-pageNO">{{pageNo}}</span> </div>
-  <div class="p-2"><button type="button" [disabled]="pageNo == totalPageCount"  (click)="nextPage()" class="btn btn-primary btn-sm">Next</button></div>
+  <div class="p-2"><button type="button"  style="background-color: #2b79c7 !important;color: white;"  [disabled]="pageNo == totalPageCount"  (click)="nextPage()" class="btn btn-primary btn-sm">Next</button></div>
 </div>
 
 <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  >

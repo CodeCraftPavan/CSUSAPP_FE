@@ -1,9 +1,9 @@
 
-<div class="d-flex page-header py-1 m-3">
+<div class="d-flex page-header py-1 m-3" style="width: 94%;padding-left: 3%;">
   <div class="p-2 me-auto page-title" >Edit Customer</div>
 </div>
 
-<div class="p-2 sec-customer">
+<div class="sec-customer" style="width: 94%;padding-left: 5%;">
 
   <form [formGroup]="addCustomerForm" (ngSubmit)="updateData()">
 
@@ -20,44 +20,44 @@
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Services Sold</label>
-             <textarea class="form-textarea" formControlName="servicenames" rows="5" cols="85"></textarea>
+              <label for="title" class="card-text">Current Sales</label>
+             <textarea class="form-textarea" formControlName="servicenames" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Associates</label>
-             <textarea class="form-textarea" formControlName="associatesNames" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="associatesNames" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Cross Sell</label>
-             <textarea class="form-textarea" formControlName="crosSell" rows="5" cols="85"></textarea>
+              <label for="title" class="card-text">Cross Sell Opportunity</label>
+             <textarea class="form-textarea" formControlName="crosSell" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Up Sell</label>
-             <textarea class="form-textarea" formControlName="upSell" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="upSell" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Person Responsility</label>
-             <textarea class="form-textarea" formControlName="personResponsility" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="personResponsility" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Goals</label>
-             <textarea class="form-textarea" formControlName="goals" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="goals" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Account History</label>
-             <textarea class="form-textarea" formControlName="accountHistory" rows="5" cols="85"></textarea>
+             <textarea class="form-textarea" formControlName="accountHistory" rows="5" cols="75"></textarea>
             </div>
 
           </div>
 
           <div class="d-flex justify-content-end mt-1">
-            <button type="submit" class="btn btn-primary"  >Update</button>
+            <button type="submit" class="btn" style="background-color: #2b79c7 !important;color: white;"  >Update</button>
           </div>
 
   </form>

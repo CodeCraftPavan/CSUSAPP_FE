@@ -1,21 +1,21 @@
 <!-- <div class="Page"> -->
   
 
-<nav class="navbar navbar-dark bg-header navbar-expand-lg ">
+<nav class="navbar navbar-dark bg-header navbar-expand-lg py-3">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"> 
-        <img src="../../../assets/CANARYS NEW LOGO PNG.png" width="100px" height="auto">
+        <img src="../../../assets/CANARYS NEW LOGO PNG.png" width="130px" height="auto">
         </a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
        
         <form class="d-flex justify-content-end" role="search">
           <input #myInput id="myInput" class="form-control me-2" type="text"    placeholder="Search Customer" aria-label="Search">
-          <button class="btn btn-outline-success"  (click)="handleSearch()" type="submit">Search</button>
+          <button class="btn fw-semibold" style="background-color: #2b79c7 !important;color: white;"  (click)="handleSearch()" type="submit">Search</button>
         </form>
 
         <div class="ms-auto">
-          <img src="../../../assets/power-on.png" width="50%" height="auto" >
+          <img (click)="userLogout()" src="../../../assets/logout.png" height="auto" >
 
         </div>
       </div>
