@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 import { AssociateComponent } from '../associate/associate.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MasterService } from 'src/app/service/master.service/master.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-customers-list',
@@ -17,6 +18,9 @@ export class CustomersListComponent implements OnInit {
   pageNo: number = 1
 
   searchKey:string = '';
+
+  @ViewChild('myInput', { static: false }) inputElement!: ElementRef;
+
 
   totalPageCount:number = 1;
   dataSource:any = [];
@@ -31,7 +35,8 @@ export class CustomersListComponent implements OnInit {
     private router: Router,
     private customerService: CustomerService,
     public dialog: MatDialog,
-    private dataService: MasterService
+    private dataService: MasterService,
+    private toastrService: ToastrService,
    ) { 
     this.dataService.currentUser.subscribe( user => {
       this.searchKey = user
@@ -90,12 +95,38 @@ getCustometBySearch(){
   info.searchTerm = this.searchKey;
   this.customerService.searchCustomer(info).subscribe((resp: any) => {
     if (resp.statuscode == 200) {
+
+      if (resp.data.$values.length === 0) {
+        this.toastrService.error('Customer name not found.');
+        this.getcustomers(this.Pagination)
+    } else {
       this.dataSource = resp.data.$values;
+    }
+
     }
     else {
       return;
     }
   })
 }
+
+handleSearch() {
+  const inputValue = this.inputElement.nativeElement.value;
+  console.log('Search Input:', inputValue);
+  this.searchKey = inputValue;
+  this.getCustometBySearch()
+  // this.dataService.changeUser(inputValue);
+}
+
+onInput(event: Event): void {
+  const inputElement = event.target as HTMLInputElement;
+
+  // Check if the input field is empty
+  if (inputElement.value === '') {
+   this.getcustomers(this.Pagination)
+  }
+}
+
+
 
 }

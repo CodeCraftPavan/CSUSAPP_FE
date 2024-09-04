@@ -4,6 +4,14 @@
   <div class="me-auto" >
     <h1 class="text-black fw-semibold">  Customer List</h1>
   </div>
+  <div class="mx-5">
+    <form class="d-flex justify-content-end" role="search">
+      <input #myInput id="myInput" class="form-control me-2" type="search"    placeholder="Search Customer" aria-label="Search"
+      (input)="onInput($event)"
+     >
+      <button class="btn fw-semibold" style="background-color: #2b79c7 !important;color: white;"   type="submit" (click)="handleSearch()">Search</button>
+    </form>
+  </div>
   <div class="page-title " >   
      <button type="button" class="btn" style="background-color: #2b79c7 !important;color: white;" (click)="addCustomer()" >Add Customer</button>
   </div>

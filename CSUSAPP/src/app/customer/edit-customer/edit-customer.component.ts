@@ -330,5 +330,31 @@ export class EditCustomerComponent {
     this.router.navigate(['/customer']);
   }
 
+  keyPressAlpha(event:any) {
+    var inp = String.fromCharCode(event.keyCode);
+    console.log(inp,'input');
+    
+    const controlValue = this.addCustomerForm.get('fullName')?.value || '';
+console.log(controlValue,'controlValue');
+
+    if(controlValue.length == 0){
+      if (/[a-zA-Z]/.test(inp)) {
+        return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+    } 
+    else{
+      if (/[a-zA-Z ]/.test(inp)) {
+        return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+
+    }
+  }
+
 }
 

@@ -14,17 +14,17 @@
          
            <div class="form-group col-lg-6 mb-3">
              <label for="name" class="card-text">Full Name<sup class="astric">*</sup></label>
-             <input type="text"   class="form-control" formControlName="fullName" >
+             <input type="text" (keypress)="keyPressAlpha($event)"   class="form-control" formControlName="fullName" >
            </div>
 
            <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Region<sup class="astric">*</sup></label>
-              <input type="text"  class="form-control" formControlName="region">
+              <input type="text" (keypress)="keyPressAlpha($event)" class="form-control" formControlName="region">
             </div>
 
             <div class="form-group col-lg-6 mb-3">
               <label for="title" class="card-text">Abbrevation<sup class="astric">*</sup></label>
-              <input type="text"  class="form-control" formControlName="abbrevation">
+              <input type="text" (keypress)="keyPressAlpha($event)" class="form-control" formControlName="abbrevation">
             </div>
 
             <div class="form-group col-lg-6 mb-3">
