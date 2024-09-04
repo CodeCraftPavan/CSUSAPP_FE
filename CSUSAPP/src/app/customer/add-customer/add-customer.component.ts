@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/assets/mockData/enumValues';
 import { AssociateComponent } from '../associate/associate.component';
@@ -36,11 +36,11 @@ export class AddCustomerComponent {
     private router: Router,
   ){
     this.addCustomerForm = this.formBuilder.group({
-      fullName: [''],
-      region: [''],
+      fullName: ['',Validators.required],
+      region: ['',Validators.required],
       serviceNames: [''],
-      associatenames: [''],
-      abbrevation: [''],
+      associatenames:[''],
+      abbrevation: ['',Validators.required],
       industrySegment: [''],
       notes: [''],
       status: [''],
@@ -269,6 +269,7 @@ export class AddCustomerComponent {
   }
 
   addData(){
+    if(this.addCustomerForm.valid){
     this.customerService.addCustomer(this.addCustomerForm.value).subscribe((data: any) => {
       if (data.statuscode == 200) {
         this.toastrService.success("Customer details added successfully.");
@@ -279,7 +280,14 @@ export class AddCustomerComponent {
       }
     })
   }
+  else{
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.toastrService.error('Please Enter All Mandatory Fields');
+  }
+  }
 
- 
+  navigateList(){
+    this.router.navigate(['/customer']);
+  }
 
 }

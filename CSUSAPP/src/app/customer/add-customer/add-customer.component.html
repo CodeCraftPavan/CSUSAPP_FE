@@ -2,6 +2,10 @@
 <div class="d-flex page-header py-1 m-3" style="width: 94%;padding-left: 3%;">
   <div class="p-2 me-auto page-title" >Add New Customer</div>
 
+  <div class="page-title " >   
+    <button type="button" class="btn" style="background-color: #2b79c7 !important;color: white;" (click)="navigateList()"  >Back</button>
+ </div>
+
 </div>
 
 <div class="sec-custome" style="width: 94%;padding-left: 5%;">
@@ -11,17 +15,17 @@
         <div class="row">
            
              <div class="form-group col-lg-6 mb-3">
-               <label for="name" class="card-text">Full Name</label>
+               <label for="name" class="card-text">Full Name<sup class="astric">*</sup></label>
                <input type="text"   class="form-control" formControlName="fullName" >
              </div>
 
              <div class="form-group col-lg-6 mb-3">
-                <label for="title" class="card-text">Region</label>
+                <label for="title" class="card-text">Region<sup class="astric">*</sup></label>
                 <input type="text"  class="form-control" formControlName="region">
               </div>
 
               <div class="form-group col-lg-6 mb-3">
-                <label for="name" class="card-text">Abbrevation</label>
+                <label for="name" class="card-text">Abbrevation<sup class="astric">*</sup></label>
                 <input type="text"   class="form-control" formControlName="abbrevation" >
               </div>
  
@@ -78,7 +82,7 @@
             </div>
 
             <div class="d-flex justify-content-end my-2" >
-              <button type="submit" class="btn" style="background-color: #2b79c7 !important;color: white;"  >Save</button>
+              <button type="submit" [disabled]="addCustomerForm.invalid" class="btn" style="background-color: #2b79c7 !important;color: white;"  >Save</button>
             </div>
 
     </form>

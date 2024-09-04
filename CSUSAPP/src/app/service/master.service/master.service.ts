@@ -25,11 +25,15 @@ export class MasterService {
   private userSource = new BehaviorSubject<any>({}); // BehaviorSubject to hold user data
   currentUser = this.userSource.asObservable(); // Observable to allow components to subscribe to the data changes
 
-  constructor() { }
+  constructor( private router: Router,) { }
 
 
   changeUser(user: any) { // Method to change user data
     this.userSource.next(user); // Update the BehaviorSubject value
+  }
+
+  navigateList(){
+    this.router.navigate(['/customer']);
   }
 
 

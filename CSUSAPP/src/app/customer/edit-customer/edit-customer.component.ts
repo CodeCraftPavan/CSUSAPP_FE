@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IndSegmentValue, RolesValue, ServicesValue, statusValue } from 'src/assets/mockData/enumValues';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { CustomerService } from 'src/app/shared/service/customer.service';
@@ -37,11 +37,11 @@ export class EditCustomerComponent {
   ){
     this.addCustomerForm = this.formBuilder.group({
       id:[''],
-      fullName: [''],
-      region: [''],
+      fullName: ['',Validators.required],
+      region: ['',Validators.required],
       servicenames: [''],
       associatesNames: [''],
-      abbrevation: [''],
+      abbrevation:['',Validators.required],
       industrySegment: [''],
       notes: [''],
       status: [''],
@@ -324,6 +324,10 @@ export class EditCustomerComponent {
         return;
       }
     })
+  }
+
+  navigateList(){
+    this.router.navigate(['/customer']);
   }
 
 }

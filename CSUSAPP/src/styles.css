@@ -56,3 +56,7 @@ label {
 .custom-dialog-container .mat-dialog-container {
   background-color: #FFFFFF !important /* Replace with your desired color */
 }
+
+.astric{
+  color: red;
+}

@@ -28,5 +28,9 @@ export class HomeComponent {
     return this.router.navigate([''])
   }
 
+  navigateList(){
+    this.router.navigate(['/customer']);
+  }
+
 
 }
