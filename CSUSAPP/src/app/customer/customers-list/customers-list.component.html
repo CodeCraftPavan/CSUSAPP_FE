@@ -16,6 +16,10 @@
      <button type="button" class="btn" style="background-color: #2b79c7 !important;color: white;" (click)="addCustomer()" >Add Customer</button>
   </div>
 
+  <div *ngIf="userdata.firstName=='Sudheer'" class="page-title ms-2" >   
+    <button type="button" class="btn" style="background-color: #2b79c7 !important;color: white;" (click)="addUser()" >Add User</button>
+ </div>
+
 </div>
 
 <div class="d-flex justify-content-end m-3">
@@ -26,25 +30,31 @@
   <thead>
       <tr>
         <th>SL No.</th>
+        <th>Commencement Date</th>
+        <th>Sales Agent</th>
           <th>Company Name</th>
-          <th>Region</th>
+          <th>Customer Name</th>
+          <th>Customer Email</th>
+          <th>Customer Mobile</th>
           <th>Current Sales</th>
-          <th>Associates</th>
+          <th>Upselling Opportunity</th>
           <th>Cross Sell Opportunity</th>
-          <th>Up Sale</th>
           <th>Action</th>
       </tr>
   </thead>
   <tbody *ngFor="let user of dataSource;let i = index">
       <tr>
         <td>{{ i + 1 }}</td>
+        <td>{{user.accountCreationDate | date:'shortDate' }}</td>
+        <td>{{user.associatesNames | titlecase}}</td>
+      <!-- <td>{{user.associatesNames | slice: 0:18 }}{{ user.associatesNames.length >18 ? '...' :' ' }}</td> -->
           <td>{{user.fullName | titlecase   }}</td>
-          <td>{{user.region | titlecase  }}</td>
+          <td>{{user.customerName | titlecase   }}</td>
+          <td>{{user.customerEmailId  }}</td>
+          <td>{{user.customerPhone  }}</td>
           <td>{{user.servicenames | slice: 0:18 }}{{ user.servicenames.length >18 ? '...' :' ' }}</td>
-          <td>{{user.associatesNames | titlecase}}</td>
-          <!-- <td>{{user.associatesNames | slice: 0:18 }}{{ user.associatesNames.length >18 ? '...' :' ' }}</td> -->
-          <td>{{user.crosSell | slice: 0:18 }}{{ user.crosSell.length >18 ? '...' :' ' }}</td>
           <td>{{user.upSell | slice: 0:18 }}{{ user.upSell.length >18 ? '...' :' ' }}</td>
+          <td>{{user.crosSell | slice: 0:18 }}{{ user.crosSell.length >18 ? '...' :' ' }}</td>
         <td (click)="editCustomer(user)" class="table-cell">
           <img class="pointer-view" src="../../../assets/view-icon.png" alt="logo">
       </td>

@@ -8,19 +8,10 @@ import { MasterService } from 'src/app/service/master.service/master.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
-  searchValue: string = ''; // Property to bind with input
-
-  @ViewChild('myInput', { static: false }) inputElement!: ElementRef;
-
-  constructor(private dataService: MasterService,
-    private router: Router,
-  ) { }
-
-  handleSearch() {
-    const inputValue = this.inputElement.nativeElement.value;
-    console.log('Search Input:', inputValue);
-    this.dataService.changeUser(inputValue);
+  userdata:any;
+  constructor(private router: Router) 
+  { 
+    this.userdata = JSON.parse(localStorage.getItem("userData")!);
   }
 
   userLogout(){
@@ -31,6 +22,5 @@ export class HomeComponent {
   navigateList(){
     this.router.navigate(['/customer']);
   }
-
 
 }

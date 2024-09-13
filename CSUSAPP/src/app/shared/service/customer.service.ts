@@ -13,6 +13,10 @@ export class CustomerService {
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Authentication.Login,user)
   }
 
+  createUser(user:any){
+    return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.User.create,user)
+  }
+
   getAllCustomers(data:any){
     return this.http.post<any>(APP_DI_CONFIG.parentDomain+APP_DI_CONFIG.endPoints.Customer.getAllCustomer,data)
   }

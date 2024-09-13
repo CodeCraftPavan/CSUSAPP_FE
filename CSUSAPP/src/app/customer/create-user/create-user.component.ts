@@ -5,13 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
 
 
-export class RegisterComponent {
+export class CreateUserComponent {
   loginForm: FormGroup;
   showLoginForm : boolean = true;
   submitted :boolean = false;
@@ -28,16 +28,17 @@ export class RegisterComponent {
       lastName: ['', Validators.required],
       userEMailId: ['', [Validators.required]],
       password: ['', Validators.required],
-      roles:['']
+      roles:[0]
     });
   }
 
   onLogin() {
+    console.log(this.loginForm.value,'values');
+    
     if (this.loginForm.valid) {
-      this.customerService.login(this.loginForm.value).subscribe({next:(res: any) => {
-        if(res.data){
-          this.toastrService.success(' Account created successful! Welcome to the app.')
-        localStorage.setItem('userData',JSON.stringify(res.data));
+      this.customerService.createUser(this.loginForm.value).subscribe({next:(res: any) => {
+        if(res.statuscode == 200){
+          this.toastrService.success('User created successful! ')
         this.router.navigate(['/customer']);
         }
       },error: (error:any) => {
@@ -47,5 +48,9 @@ export class RegisterComponent {
       }});
      
     }
+  }
+
+  navigateList(){
+    this.router.navigate(['/customer']);
   }
 }

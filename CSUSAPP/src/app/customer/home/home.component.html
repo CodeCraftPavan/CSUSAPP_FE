@@ -3,16 +3,18 @@
 
 <nav class="navbar navbar-dark bg-header navbar-expand-lg py-3">
     <div class="container-fluid">
-      <a class="navbar-brand" (click)="navigateList()"> 
+      <a class="navbar-brand move-pointer" (click)="navigateList()"> 
         <img src="../../../assets/CANARYS NEW LOGO PNG.png" width="130px" height="auto">
         </a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
        
-       
+       <div class="ms-auto user-name px-2" >
+         {{userdata.firstName }}   {{userdata.lastName }} 
+      </div>
 
-        <div class="ms-auto">
-          <img (click)="userLogout()" src="../../../assets/logout.png" height="auto" >
+        <div >
+          <img class="move-pointer" (click)="userLogout()" src="../../../assets/logout.png" height="auto" >
 
         </div>
       </div>

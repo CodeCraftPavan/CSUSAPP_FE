@@ -37,18 +37,26 @@ export class AddCustomerComponent {
   ){
     this.addCustomerForm = this.formBuilder.group({
       fullName: ['',Validators.required],
-      region: ['',Validators.required],
+      companyCode: ['',Validators.required],
+      customerName: ['',Validators.required],
+      customerEmailId: ['',[Validators.required, Validators.email]],
+      customerPhone: ['', [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')]],
+      customerAddress: [''],
+      region: [''],
+      industrySegment: [''],
+      accountCreationDate: [''],
+      status: [''],
+
       serviceNames: [''],
       associatenames:[''],
-      abbrevation: ['',Validators.required],
-      industrySegment: [''],
-      notes: [''],
-      status: [''],
+      abbrevation: ['data'],
       crosSell: [''],
       upSell: [''],
+
       personResponsility: [''],
       goals: [''],
       accountHistory: [''],
+      notes: [''],
     })
   
   }
@@ -290,12 +298,11 @@ export class AddCustomerComponent {
     this.router.navigate(['/customer']);
   }
 
-  keyPressAlpha(event:any) {
+  keyPressAlpha(event:any,controlName:any) {
     var inp = String.fromCharCode(event.keyCode);
     console.log(inp,'input');
     
-    const controlValue = this.addCustomerForm.get('fullName')?.value || '';
-console.log(controlValue,'controlValue');
+    const controlValue = this.addCustomerForm.get(controlName)?.value || '';
 
     if(controlValue.length == 0){
       if (/[a-zA-Z]/.test(inp)) {
@@ -314,6 +321,14 @@ console.log(controlValue,'controlValue');
       }
 
     }
+  }
+
+  numberOnly(event:any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
 }

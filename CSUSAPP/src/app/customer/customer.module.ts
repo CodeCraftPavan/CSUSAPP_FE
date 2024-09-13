@@ -12,6 +12,7 @@ import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AssociateComponent } from './associate/associate.component';
 import { ServiceComponent } from './service/service.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ServiceComponent } from './service/service.component';
     CustomersListComponent,
     ViewCustomerComponent,
     AssociateComponent,
-    ServiceComponent  ],
+    ServiceComponent,
+    CreateUserComponent  ],
   imports: [
     CommonModule,
     CustomerRoutingModule,

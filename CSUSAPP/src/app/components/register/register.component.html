@@ -1,1 +1,96 @@
-<p>register works!</p>
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <!-- Login Form -->
+                <div >
+
+                  <div >
+
+                  <img src="../../../assets/CANARYS NEW LOGO BLACK 1.png" width="300px" height="auto">
+                </div>
+
+
+                <h3 class="login-heading my-2"><strong>Welcome To CSUS-APP!</strong></h3> 
+
+                <p class="text text-normal">Already have an Account? <span><a routerLink="/login" class="text text-links">Sign in</a></span>
+
+              
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName" name="userEmail"
+                      [ngClass]="{'is-invalid':(submitted && f['firstName'].errors) ||(f['firstName'].errors && f['firstName'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['firstName'].errors) ||(f['firstName'].errors && f['firstName'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['firstName'].errors['required']">
+                        FirstName is required
+                      </div>
+                   
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" name="lastName"
+                      [ngClass]="{'is-invalid':(submitted && f['lastName'].errors) ||(f['lastName'].errors && f['lastName'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['lastName'].errors) ||(f['lastName'].errors && f['lastName'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['lastName'].errors['required']">
+                        Email is required
+                      </div>
+                   
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">Email</label>
+                    <input type="text" class="form-control" formControlName="userEMailId" name="userEMailId"
+                      [ngClass]="{'is-invalid':(submitted && f['userEMailId'].errors) ||(f['userEMailId'].errors && f['userEMailId'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['userEMailId'].errors) ||(f['userEMailId'].errors && f['userEMailId'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['userEMailId'].errors['required']">
+                        Email is required
+                      </div>
+                   
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="form-control-label">Password</label>
+                    <input type="password" class="form-control" formControlName="password" name="password"
+                      [ngClass]="{'is-invalid':(submitted && f['password'].errors) ||(f['password'].errors && f['password'].touched) }">
+                    <div
+                      *ngIf="(submitted && f['password'].errors) ||(f['password'].errors && f['password'].touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="f['password'].errors['required']">
+                        Password is required
+                      </div>                    
+                    </div>
+                  </div>  
+
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary"  >Login</button>
+                  </div>
+                
+                </form>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+  
+  

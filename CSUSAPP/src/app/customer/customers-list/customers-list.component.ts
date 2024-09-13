@@ -28,6 +28,7 @@ export class CustomersListComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   };
+  userdata:any;
 
   displayedColumns: string[] = ['fullName','region','servicenames','associatesNames','view'];
   dialogRef:any;
@@ -38,10 +39,8 @@ export class CustomersListComponent implements OnInit {
     private dataService: MasterService,
     private toastrService: ToastrService,
    ) { 
-    this.dataService.currentUser.subscribe( user => {
-      this.searchKey = user
-      this.getCustometBySearch();
-    });
+    this.userdata = JSON.parse(localStorage.getItem("userData")!);
+
      }
 
   ngOnInit(): void {
@@ -62,6 +61,11 @@ export class CustomersListComponent implements OnInit {
  addCustomer(){
   this.router.navigate(['/customer/addCustomer']);
  }
+
+ addUser(){
+  this.router.navigate(['/customer/addUser']);
+ }
+
 
  editCustomer(item:any){
   console.log(item);

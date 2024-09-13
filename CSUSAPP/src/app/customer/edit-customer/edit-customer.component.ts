@@ -38,10 +38,15 @@ export class EditCustomerComponent {
     this.addCustomerForm = this.formBuilder.group({
       id:[''],
       fullName: ['',Validators.required],
-      region: ['',Validators.required],
+      companyCode: ['',Validators.required],
+      customerName: ['',Validators.required],
+      customerEmailId: ['',[Validators.required, Validators.email]],
+      customerPhone: ['', [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')]],
+      region: [''],
+      customerAddress: [''],
       servicenames: [''],
       associatesNames: [''],
-      abbrevation:['',Validators.required],
+      abbrevation:['data'],
       industrySegment: [''],
       notes: [''],
       status: [''],
@@ -200,6 +205,11 @@ export class EditCustomerComponent {
       id:this.customerData.id,
       abbrevation:this.customerData.abbrevation,
       fullName:this.customerData.fullName,
+      customerName:this.customerData.customerName,
+      companyCode:this.customerData.companyCode,
+      customerEmailId:this.customerData.customerEmailId,
+      customerPhone:this.customerData.customerPhone,
+      customerAddress:this.customerData.customerAddress,
       region:this.customerData.region,
       industrySegment:this.customerData.industrySegment,
       notes:this.customerData.notes,
@@ -330,11 +340,11 @@ export class EditCustomerComponent {
     this.router.navigate(['/customer']);
   }
 
-  keyPressAlpha(event:any) {
+  keyPressAlpha(event:any,controlName:any) {
     var inp = String.fromCharCode(event.keyCode);
     console.log(inp,'input');
     
-    const controlValue = this.addCustomerForm.get('fullName')?.value || '';
+    const controlValue = this.addCustomerForm.get(controlName)?.value || '';
 console.log(controlValue,'controlValue');
 
     if(controlValue.length == 0){
@@ -354,6 +364,14 @@ console.log(controlValue,'controlValue');
       }
 
     }
+  }
+
+  numberOnly(event:any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
   }
 
 }

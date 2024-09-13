@@ -13,58 +13,82 @@
       <div class="row">
          
            <div class="form-group col-lg-6 mb-3">
-             <label for="name" class="card-text">Full Name<sup class="astric">*</sup></label>
-             <input type="text" (keypress)="keyPressAlpha($event)"   class="form-control" formControlName="fullName" >
+             <label  class="card-text">Company Name<sup class="astric">*</sup></label>
+             <input type="text" (keypress)="keyPressAlpha($event,'fullName')"   class="form-control" formControlName="fullName" >
            </div>
 
            <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Region<sup class="astric">*</sup></label>
-              <input type="text" (keypress)="keyPressAlpha($event)" class="form-control" formControlName="region">
+            <label  class="card-text">Company Code<sup class="astric">*</sup></label>
+            <input type="text" (keypress)="keyPressAlpha($event,'companyCode')" class="form-control" formControlName="companyCode" >
+          </div>
+
+          <div class="form-group col-lg-6 mb-3">
+            <label  class="card-text">Customer Name<sup class="astric">*</sup></label>
+            <input type="text" (keypress)="keyPressAlpha($event,'customerName')"  class="form-control" formControlName="customerName" >
+          </div>
+
+           <div class="form-group col-lg-6 mb-3">
+              <label  class="card-text">Region</label>
+              <input type="text"  class="form-control" formControlName="region">
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Abbrevation<sup class="astric">*</sup></label>
-              <input type="text" (keypress)="keyPressAlpha($event)" class="form-control" formControlName="abbrevation">
+              <label  class="card-text">Customer Email<sup class="astric">*</sup></label>
+              <input type="email"   class="form-control" formControlName="customerEmailId" >
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Notes</label>
-              <input type="text"  class="form-control" formControlName="notes">
+              <label  class="card-text">Customer Mobile  <sup class="astric">*</sup></label>
+              <input type="text"  (keypress)="numberOnly($event)"  class="form-control" formControlName="customerPhone" >
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Current Sales</label>
-             <textarea class="form-textarea" formControlName="servicenames" rows="5" cols="75"></textarea>
+              <label  class="card-text">Customer Address</label>
+              <!-- <input type="text"  class="form-control" formControlName="customerAddress"> -->
+             <textarea class="form-textarea" formControlName="customerAddress" rows="5" cols="75"></textarea>
             </div>
 
+
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Associates</label>
+              <label  class="card-text">Sales Agent</label>
              <textarea class="form-textarea" formControlName="associatesNames" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Cross Sell Opportunity</label>
+              <label  class="card-text">Current Sales</label>
+             <textarea class="form-textarea" formControlName="servicenames" rows="5" cols="75"></textarea>
+            </div>
+
+         
+
+            <div class="form-group col-lg-6 mb-3">
+              <label  class="card-text">Cross Sell Opportunity</label>
              <textarea class="form-textarea" formControlName="crosSell" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Up Sell</label>
+              <label  class="card-text">Upselling Opportunity</label>
              <textarea class="form-textarea" formControlName="upSell" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Person Responsility</label>
+              <label  class="card-text">Person Responsility</label>
              <textarea class="form-textarea" formControlName="personResponsility" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Goals</label>
+              <label  class="card-text">Goals</label>
              <textarea class="form-textarea" formControlName="goals" rows="5" cols="75"></textarea>
             </div>
 
             <div class="form-group col-lg-6 mb-3">
-              <label for="title" class="card-text">Account History</label>
+              <label  class="card-text">Account History</label>
              <textarea class="form-textarea" formControlName="accountHistory" rows="5" cols="75"></textarea>
+            </div>
+
+            <div class="form-group col-lg-6 mb-3">
+              <label  class="card-text">Notes</label>
+             <textarea class="form-textarea" formControlName="notes" rows="5" cols="75"></textarea>
             </div>
 
           </div>

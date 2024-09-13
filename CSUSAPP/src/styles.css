@@ -60,3 +60,7 @@ label {
 .astric{
   color: red;
 }
+
+.move-pointer{
+ cursor: pointer; 
+}

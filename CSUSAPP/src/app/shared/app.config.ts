@@ -9,7 +9,7 @@ export const APP_DI_CONFIG: any = {
             Login: "Sign-In",
         },
         User:{
-            Login: "api/Users/Create-User",
+            create: "api/Users/Create-User",
         },
         Customer: {
           getAllCustomer: "api/Customer/Get-Customers",
